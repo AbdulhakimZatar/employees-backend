@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
   res.status(200).json(employees);
 })
 
-router.post('/seed',(req, res) => {
+router.get('/seed',(req, res) => {
  const num = req.body.num || 100; 
  employee.seed(num);
  res.status(200).json({message: 'Seeded'});
