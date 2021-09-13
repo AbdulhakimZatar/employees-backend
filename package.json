@@ -1,0 +1,27 @@
+{
+  "name": "employees-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbdulhakimZatar/employees-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AbdulhakimZatar/employees-backend/issues"
+  },
+  "homepage": "https://github.com/AbdulhakimZatar/employees-backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "faker": "^5.5.3",
+    "pg": "^8.7.1"
+  }
+}
