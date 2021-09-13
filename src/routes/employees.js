@@ -19,17 +19,18 @@ router.get('/', async (req, res) => {
 
   const search = req.query.search || '';
   const type = req.query.type || 'name';
+  const filter = req.query.filter;
   
   let employees = {}
   if (search.length > 0) {
-    employees = await employee.search(search, type, limit, offset)
+    employees = await employee.search(search, type, limit, offset,filter)
   } else {
-    employees = await employee.getAll( limit, offset);
+    employees = await employee.getAll( limit, offset,filter);
   }
   res.status(200).json(employees);
 })
 
-router.get('/seed',(req, res) => {
+router.post('/seed',(req, res) => {
  const num = req.body.num || 100; 
  employee.seed(num);
  res.status(200).json({message: 'Seeded'});
