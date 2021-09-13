@@ -8,6 +8,7 @@ const cors = require('cors');
 const employeesRouter = require('./routes/employees');
 const notFoundHandler = require('./middlewares/404');
 const errorHandler = require('./middlewares/500');
+
 //-------------------------------// App Level Middleware \\-----------------------------\\
 const app = express();
 app.use(cors());
