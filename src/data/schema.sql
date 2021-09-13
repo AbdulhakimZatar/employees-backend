@@ -12,3 +12,12 @@ CREATE TABLE IF NOT EXISTS employees (
   email VARCHAR(255) UNIQUE NOT NULL,
   department_id INT REFERENCES departments (id)
 );
+
+INSERT INTO departments (name) VALUES ('IT');
+INSERT INTO departments (name) VALUES ('Human Resources');
+INSERT INTO departments (name) VALUES ('Engineering');
+INSERT INTO departments (name) VALUES ('Sales');
+INSERT INTO departments (name) VALUES ('Marketing');
+INSERT INTO departments (name) VALUES ('Finance');
+INSERT INTO departments (name) VALUES ('Quality Assurance');
+INSERT INTO departments (name) VALUES ('Customer Service');
