@@ -14,9 +14,8 @@ const router = express.Router();
 router.get('/', async (req, res) => {
 
   const page = req.query.page || 1;
-  const limit = req.query.limit || 20;
+  const limit = req.query.limit || 5;
   const offset = (page - 1) * limit;
-
   const search = req.query.search || '';
   const type = req.query.type || 'name';
   const filter = req.query.filter;
