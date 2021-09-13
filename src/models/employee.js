@@ -5,7 +5,7 @@ var faker = require('faker');
 
 class Employee {
   async getAll(limit, offset, filter) {
-    let SQL = `SELECT employees.name,employees.email,employees.id,departments.name AS department FROM employees JOIN departments ON employees.department_id=departments.id`;
+    let SQL = `SELECT employees.name,employees.email,employees.avatar,employees.id,departments.name AS department FROM employees JOIN departments ON employees.department_id=departments.id`;
     const values = [limit, offset];
     if (filter) {
       values.push(filter)
@@ -18,7 +18,7 @@ class Employee {
   }
 
   async search(search, type, limit, offset, filter) {
-    let SQL = `SELECT employees.name,employees.email,employees.id,departments.name AS department FROM employees JOIN departments ON employees.department_id=departments.id WHERE employees.${type} ~* $1`;
+    let SQL = `SELECT employees.name,employees.email,employees.avatar,employees.id,departments.name AS department FROM employees JOIN departments ON employees.department_id=departments.id WHERE employees.${type} ~* $1`;
     const values = [search, limit, offset];
     if (filter) {
       values.push(filter)
@@ -36,9 +36,10 @@ class Employee {
     for (let i = 0; i < number; i++) {
       const randomName = faker.name.findName();
       const randomEmail = faker.internet.email();
+      const randomAvatar = faker.image.avatar();
       const randomDepartment = Math.floor(Math.random() * (max - min + 1) + min)
-      const SQL = `INSERT INTO employees (name, email,department_id) VALUES ($1,$2,$3);`;
-      const values = [randomName, randomEmail, randomDepartment];
+      const SQL = `INSERT INTO employees (name, email,department_id,avatar) VALUES ($1,$2,$3,$4);`;
+      const values = [randomName, randomEmail, randomDepartment,randomAvatar];
       await client.query(SQL, values);
     }
   }
