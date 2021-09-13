@@ -10,16 +10,22 @@ class Employee {
     if (filter) {
       values.push(filter)
       filter = ` WHERE department_id=$3`
-      SQL = SQL + filter
+      SQL += filter
     };
-    SQL = SQL + ` LIMIT $1 OFFSET $2;`;
+    SQL += ` LIMIT $1 OFFSET $2;`;
     const { rows } = await client.query(SQL, values);
     return { count: rows.length, data: rows };
   }
 
-  async search(search, type, limit, offset) {
-    const SQL = `SELECT * FROM employees WHERE ${type} ~* $1 LIMIT $2 OFFSET $3;`;
+  async search(search, type, limit, offset, filter) {
+    let SQL = `SELECT employees.name,employees.email,employees.id,departments.name AS department FROM employees JOIN departments ON employees.department_id=departments.id WHERE employees.${type} ~* $1`;
     const values = [search, limit, offset];
+    if (filter) {
+      values.push(filter)
+      filter = ` AND department_id=$4`
+      SQL += filter
+    };
+    SQL +=  ` LIMIT $2 OFFSET $3;`;
     const { rows } = await client.query(SQL, values);
     return { count: rows.length, data: rows };
   }
