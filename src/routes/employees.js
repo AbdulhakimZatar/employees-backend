@@ -11,7 +11,30 @@ const router = express.Router();
 
 //--------------------------------------// Routes \\--------------------------------------\\
 
+router.get('/', async (req, res) => {
 
+  const page = req.query.page || 1;
+  const limit = req.query.limit || 20;
+  const offset = (page - 1) * limit;
+
+  const search = req.query.search || '';
+  const type = req.query.type || 'name';
+  const filter = req.query.filter;
+  
+  let employees = {}
+  if (search.length > 0) {
+    employees = await employee.search(search, type, limit, offset,filter)
+  } else {
+    employees = await employee.getAll( limit, offset,filter);
+  }
+  res.status(200).json(employees);
+})
+
+router.post('/seed',(req, res) => {
+ const num = req.body.num || 100; 
+ employee.seed(num);
+ res.status(200).json({message: 'Seeded'});
+})
 
 //-----------------------------------// Export Module \\-----------------------------------\\
 module.exports = router;
