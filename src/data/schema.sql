@@ -22,3 +22,6 @@ INSERT INTO departments (name) VALUES ('Marketing');
 INSERT INTO departments (name) VALUES ('Finance');
 INSERT INTO departments (name) VALUES ('Quality Assurance');
 INSERT INTO departments (name) VALUES ('Customer Service');
+
+create index employee_name on employees (name);
+create index employee_email on employees (email);
