@@ -18,6 +18,9 @@ app.use(express.json());
 //--------------------------------------// Routes \\--------------------------------------\\
 app.use('/v1/employees', employeesRouter);
 app.use('/v1/departments', departmentsRouter);
+app.get('/v1',(req,res)=>{
+ res.json({version: '1.0.0'});
+})
 
 app.use('*', notFoundHandler);
 app.use(errorHandler);
